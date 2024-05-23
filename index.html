@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carousel</title>
+  <style>
+    .why-choose-us__features {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .why-choose-us__features-list {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      width: 100%;
+    }
+
+    .why-choose-us__feature {
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .carousel-button.prev {
+      left: 10px;
+    }
+
+    .carousel-button.next {
+      right: 10px;
+    }
+
+    .carousel-button:disabled {
+      background-color: rgba(0, 0, 0, 0.2);
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <div class="why-choose-us__features" id="js-carousel">
+    <button class="carousel-button prev" disabled>Previous</button>
+    <div class="why-choose-us__features-list">
+      <div class="why-choose-us__feature">
+        <div class="why-choose-us__feature-image"></div>
+        <div class="why-choose-us__feature-content">
+          <h3 class="why-choose-us__feature-title">No hidden fees</h3>
+          <p class="why-choose-us__feature-description">Transparent pricing, no unexpected surprises</p>
+        </div>
+      </div>
+      <div class="why-choose-us__feature">
+        <div class="why-choose-us__feature-image"></div>
+        <div class="why-choose-us__feature-content">
+          <h3 class="why-choose-us__feature-title">No hidden fees</h3>
+          <p class="why-choose-us__feature-description">Transparent pricing, no unexpected surprises</p>
+        </div>
+      </div>
+      <div class="why-choose-us__feature">
+        <div class="why-choose-us__feature-image"></div>
+        <div class="why-choose-us__feature-content">
+          <h3 class="why-choose-us__feature-title">No hidden fees</h3>
+          <p class="why-choose-us__feature-description">Transparent pricing, no unexpected surprises</p>
+        </div>
+      </div>
+      <div class="why-choose-us__feature">
+        <div class="why-choose-us__feature-image"></div>
+        <div class="why-choose-us__feature-content">
+          <h3 class="why-choose-us__feature-title">No hidden fees</h3>
+          <p class="why-choose-us__feature-description">Transparent pricing, no unexpected surprises</p>
+        </div>
+      </div>
+      <div class="why-choose-us__feature">
+        <div class="why-choose-us__feature-image"></div>
+        <div class="why-choose-us__feature-content">
+          <h3 class="why-choose-us__feature-title">No hidden fees</h3>
+          <p class="why-choose-us__feature-description">Transparent pricing, no unexpected surprises</p>
+        </div>
+      </div>
+      <div class="why-choose-us__feature">
+        <div class="why-choose-us__feature-image"></div>
+        <div class="why-choose-us__feature-content">
+          <h3 class="why-choose-us__feature-title">No hidden fees</h3>
+          <p class="why-choose-us__feature-description">Transparent pricing, no unexpected surprises</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-button next">Next</button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const carousel = document.getElementById("js-carousel");
+      const featureList = carousel.querySelector(".why-choose-us__features-list");
+      const features = carousel.querySelectorAll(".why-choose-us__feature");
+      const prevButton = carousel.querySelector(".carousel-button.prev");
+      const nextButton = carousel.querySelector(".carousel-button.next");
+      
+      let index = 0;
+      
+      function updateButtons() {
+        prevButton.disabled = index === 0;
+        nextButton.disabled = index === features.length - 1;
+      }
+      
+      function showFeature(index) {
+        const offset = -index * 100; // Adjust this if your feature width is not 100%
+        featureList.style.transform = `translateX(${offset}%)`;
+        updateButtons();
+      }
+      
+      prevButton.addEventListener("click", function () {
+        if (index > 0) {
+          index -= 1;
+          showFeature(index);
+        }
+      });
+      
+      nextButton.addEventListener("click", function () {
+        if (index < features.length - 1) {
+          index += 1;
+          showFeature(index);
+        }
+      });
+      
+      showFeature(index);
+    });
+  </script>
+</body>
+</html>
